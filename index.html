@@ -33,6 +33,7 @@
         <script src="js/labels.js"></script>
         <script src="js/Control.OSMGeocoder.js"></script>
         <script src="data/100km_1000ha_Topologique_Noeud_0.js"></script>
+        <script src="data/lien100km_1.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:20, minZoom:1
@@ -90,6 +91,53 @@
         });
         bounds_group.addLayer(layer_100km_1000ha_Topologique_Noeud_0);
         map.addLayer(layer_100km_1000ha_Topologique_Noeud_0);
+        function pop_lien100km_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Id'] !== null ? Autolinker.link(String(feature.properties['Id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID1'] !== null ? Autolinker.link(String(feature.properties['ID1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID2'] !== null ? Autolinker.link(String(feature.properties['ID2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Dist'] !== null ? Autolinker.link(String(feature.properties['Dist'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DistM'] !== null ? Autolinker.link(String(feature.properties['DistM'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BC_d4148'] !== null ? Autolinker.link(String(feature.properties['BC_d4148'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_lien100km_1_0() {
+            return {
+                pane: 'pane_lien100km_1',
+                opacity: 1,
+                color: 'rgba(47,19,184,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_lien100km_1');
+        map.getPane('pane_lien100km_1').style.zIndex = 401;
+        map.getPane('pane_lien100km_1').style['mix-blend-mode'] = 'normal';
+        var layer_lien100km_1 = new L.geoJson(json_lien100km_1, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_lien100km_1',
+            onEachFeature: pop_lien100km_1,
+            style: style_lien100km_1_0,
+        });
+        bounds_group.addLayer(layer_lien100km_1);
+        map.addLayer(layer_lien100km_1);
         var title = new L.Control();
         title.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'info');
@@ -107,7 +155,7 @@
         });
         osmGeocoder.addTo(map);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/100km_1000ha_Topologique_Noeud_0.png" /> 100km_1000ha_Topologique_Noeud': layer_100km_1000ha_Topologique_Noeud_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/lien100km_1.png" /> lien100km': layer_lien100km_1,'<img src="legend/100km_1000ha_Topologique_Noeud_0.png" /> 100km_1000ha_Topologique_Noeud': layer_100km_1000ha_Topologique_Noeud_0,},{collapsed:false}).addTo(map);
         setBounds();
         </script>
     </body>
