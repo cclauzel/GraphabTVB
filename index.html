@@ -42,14 +42,14 @@
         <script src="data/100km_1000ha_Noeud_9.js"></script>
         <script>
         var map = L.map('map', {
-            zoomControl:true, maxZoom:20, minZoom:1
-        }).fitBounds([[46.9809127644,-1.69069383492],[47.7212360083,-0.047670728964]]);
+            zoomControl:true, maxZoom:15, minZoom:5
+        }).fitBounds([[41.5259715573,-8.42675610666],[50.8405600132,13.8000916361]]);
         var hash = new L.Hash(map);
         map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
         var bounds_group = new L.featureGroup([]);
         var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-            maxZoom: 20
+            maxZoom: 15
         });
         basemap0.addTo(map);
         function setBounds() {
@@ -173,7 +173,7 @@
                 pane: 'pane_10km_100ha_Noeud_4',
                 radius: 4.0,
                 opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
+                color: 'rgba(97,97,97,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
